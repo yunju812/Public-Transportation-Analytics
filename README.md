@@ -2,7 +2,9 @@
 
 **Note:** All data in this project is simulated for demonstration purposes.
 
-This project analyzes public transportation usage and trends using a MySQL database. The dataset includes three interconnected tables:
+## Executive Summary
+
+This project demonstrates the use of MySQL to analyze public transportation data, uncovering key insights about ridership patterns, station usage, and line performance. Through advanced SQL queries, joins, aggregations, and window functions, it identifies high-traffic and underutilized stations, evaluates ridership trends over time, and provides data-driven recommendations for optimizing urban transit.
 
 ## Dataset Structure
 
@@ -24,21 +26,14 @@ This project analyzes public transportation usage and trends using a MySQL datab
 - ride_date (DATE)  
 - passenger_count (INT)  
 
+Note: Each row represents the daily total passengers for a specific station and line, not a single vehicle trip.
+
 ## Key SQL Concepts Used
 
 - Joins to combine related tables  
 - Aggregations and subqueries for totals, averages, and filtering  
 - Window functions (e.g., RANK()) for ranking stations within each line  
 - Analysis of ridership trends over time, across stations, and by line/type  
-
-## Insights & Applications
-
-By analyzing this dataset, you can:  
-- Identify the busiest stations and lines for targeted improvements  
-- Spot underutilized stations and lines for service adjustments  
-- Evaluate ridership trends over time to support scheduling and resource allocation  
-- Rank stations within lines to prioritize infrastructure investments  
-- Provide data-driven recommendations for urban transit planning  
 
 ## Sample Queries
 
@@ -106,3 +101,17 @@ HAVING SUM(passenger_count) < (
     ) AS station_totals
 );
 ```
+## Insights
+1. **Top 5 stations by total passengers**  
+       LumaCity, SolisCity, NovaPort, TerraCity, and ValeCity are the busiest stations, highlighting key hubs where service improvements or capacity expansions could have the greatest impact.
+2. **Average ridership by line type**              
+   Bus lines have the highest average ridership, followed by subway and tram lines. Lower tram usage may reflect limited coverage or less convenient routes rather than low demand, highlighting areas for               potential network optimization.
+3. **Daily ridership trend**              
+   Daily passenger totals fluctuate throughout the period, with peaks on 8/17/25 (3504 passengers) and 8/23/25 (3223 passengers). This highlights variability in daily usage and suggests that service planning should account for periodic spikes in ridership.
+4. **Total passengers per line**                      
+       The Yellow line leads ridership (109,601 passengers), closely followed by the Purple (106,552) and Red (100,633) lines. This indicates that these three lines carry the bulk of passenger demand, while Green and Blue serve comparatively fewer riders.
+5. **Ridership rank per line**         
+       Each line has a few hub stations that dominate ridership. For example, Station 5 leads Line 1, Station 14 leads Line 2, Station 12 leads Line 3, Station 18 leads Line 4, and Station 3 leads Line 5. These hubs handle a disproportionate share of passengers, making them critical points for resource allocation and planning.
+6. **Stations below average per passengers**               
+       Among below-average stations, the weakest performers are Stations 17 and 19 (≈14,600 passengers each), while others like Station 15 (24,154) and Station 6 (23,453), though still under average, manage relatively higher usage. This highlights that not all “below-average” stations are equally underutilized — some are closer to the system mean, while others may need closer evaluation.
+
