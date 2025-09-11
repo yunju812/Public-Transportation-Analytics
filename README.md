@@ -67,6 +67,8 @@ GROUP BY ride_date
 ORDER BY ride_date;
 ```
 
+Note: CURDATE() - INTERVAL 30 DAY selects rides from the last 30 days relative to when the query is run. For reproducibility, the equivalent fixed date would be '2025-08-12'
+
 **Total passengers per line**  
 ```sql
 SELECT Lines_.line_name,
